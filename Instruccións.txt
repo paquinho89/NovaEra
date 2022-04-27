@@ -1,0 +1,13 @@
+INSTRUCCIÓN
+
+¿Cómo crear un proxecto en Django?
+Tes que executar na liña de comandos de Windows o siguiente comando:
+	python -m django startproject NomeProxecto
+
+
+¿Cómo traballar ca shell e importar os modelos e velos?
+
+na línea de comandos da terminal escribimos o seguinte:
+python manage.py shell
+#Temos o model artigos. Pois entón facemos:
+from artigos.models import artigos
