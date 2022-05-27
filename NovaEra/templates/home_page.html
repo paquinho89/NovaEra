@@ -18,6 +18,9 @@
         position: sticky;
         top: 0
       }
+      #newsletter_message_error {
+        color:red
+      }
       /* Carousel styling */
       #introCarousel,
       .carousel-inner,
@@ -247,7 +250,7 @@
             {% csrf_token %}
             <!-- Email input -->
             <div class="form-outline mb-4" id="subscribirse_boton">
-              {{ form_newsletter_home_page.email_subscriber }}
+              {{ form_newsletter_home_page.email_subscriptor }}
               <!--<input type="email" id="form3Example3" class="form-control" placeholder='Email' />-->
             </div>
             <!-- Checkbox -->

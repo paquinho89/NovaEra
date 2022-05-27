@@ -2,7 +2,7 @@ from pdb import post_mortem
 from django.shortcuts import redirect, render
 
 from .models import artigos, artigo_comments, autores
-from .forms import CommentForm, newsletter_contratacion_form
+from .forms import CommentForm
 
 #Este paquete é para mostrar as alertas (mensaxes) unha vez se completa un campo como é debido.
 from django.contrib import messages
@@ -15,31 +15,9 @@ def artigos_list_view (request):
   artigos_autores_queryset = artigos.objects.select_related('author').all()
   #Esto é para ver como sería a sql query que o select_related('author') está a facer.
   #print(str(artigos_autores_queryset.query))
-
-  #Este código é para o form do newsletter
-  newsletter_form = newsletter_contratacion_form(data=request.POST)
-  if request.method == 'POST':
-    if newsletter_form.is_valid():
-      new_newsletter_entry = newsletter_form.save(commit=False)
-      new_newsletter_entry.save()
-      #Esto é para que me mostre a mensaxe de que se gardou/enviou a solicitude de contratación
-      messages.success(request, 'Grazas por subscribirte a nosa newsletter. Seremos bos e non molestaremos')
-      #artigos_content e que para que me retorne a vista do blog. Vaste o archivo das urls e buscas a url que queiras que che retorne
-      return redirect('artigos')
-
-    else:
-      messages.error(request, newsletter_form.errors)
-      newsletter_form = newsletter_contratacion_form(request.POST)
-      # Eiqui o que fago e que recorra os distintos fields do form ("neste caso solo un") e que lle 
-      # asigne o formato de error (O borde en vermello)
-      for field in newsletter_form.errors:
-        newsletter_form[field].field.widget.attrs.update({'style': 'border-color:red; border-width: medium'})
-
     
-
   context = {
       'artigos_autores': artigos_autores_queryset,
-      'newsletter_form_html':newsletter_form
     }
   return render (request, 'artigo_list.html', context)
    

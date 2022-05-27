@@ -11,7 +11,7 @@ from banda_contratacion.models import contratacion_datos
 #O search field é para facer unha búsqueda, neste caso por nome de contratante.
 @admin.register(contratacion_datos)
 class contratacion_datos_admin(admin.ModelAdmin):
-    list_display = ['nome_contratante', 'data_rexistro', 'data_evento', 'email_contratante', 'contestado']
+    list_display = ['nome', 'data_rexistro', 'data_evento', 'correo_electrónico', 'contestado']
     ordering = ['-data_rexistro']
-    search_fields = ['nome_contratante']
+    search_fields = ['nome']
 

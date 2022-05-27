@@ -6,5 +6,5 @@ from artigos.models import artigos
 #     return render(request, 'pages/home.html')
 
 
-def informacion(request):
-    return render(request, 'pages/informacion.html')
+def information_view(request):
+  return render (request, 'informacion.html')

@@ -33,13 +33,13 @@ def contratacion_view(request):
       contratante_eleccion_terceto_2 = request.POST.get('terceto_opcion_2', '-')
       contratante_eleccion_duo_1 = request.POST.get('duo_opcion_1', '-')
       contratante_eleccion_duo_2 = request.POST.get('duo_opcion_2', '-')
-      contratante_eleccion_solista = request.POST.get('Advertencia', '-')
+      contratante_eleccion_solista = request.POST.get('conxunto', '-')
       contratante_tipoevento = request.POST['tipo_evento']
       contratante_data = request.POST['data_evento']
       contratante_lugar = request.POST['lugar_evento']
       contratante_telefono = request.POST['telefono']
-      contratante_nome = request.POST['nome_contratante']
-      contratante_email = request.POST['email_contratante']
+      contratante_nome = request.POST['nome']
+      contratante_email = request.POST['correo_electrónico']
       contratante_info = request.POST['mais_info']
       send_mail(
         'Nova_Actuación - ' + contratante_nome , #subject
@@ -72,9 +72,9 @@ def contratacion_view(request):
       # Eiqui o que fago e que recorra os distintos fields do form ("neste caso solo un") e que lle 
       # asigne o formato de error (O borde en vermello)
       for field_form in contratacion_form.errors:
-        contratacion_form[field_form].field.widget.attrs.update({'style': 'border-color:red; border-width: thin'})
+        contratacion_form[field_form].field.widget.attrs.update({'style': 'border-color:red; border-width: medium'})
       #Esto é porque cambia o formato do último checkbox, e desta forma pois poño as mismas dimensions que debe de ter
-      contratacion_form['Advertencia'].field.widget.attrs.update({'style':'width:25px; height:25px; background-color:red'})
+      contratacion_form['conxunto'].field.widget.attrs.update({'style':'width:25px; height:25px; background-color:red; border-width: medium'})
   context = {
         'form':contratacion_form
   }

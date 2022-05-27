@@ -1,13 +1,12 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import autores, artigos, artigo_comments, newsletter_email_contratacion
+from .models import autores, artigos, artigo_comments
 
 
 admin.site.register(autores)
 #admin.site.register(artigos)
 admin.site.register(artigo_comments)
-admin.site.register(newsletter_email_contratacion)
 
 
 #Estp é para configurar o panel de administración de django é que aparezan os seguintes campos

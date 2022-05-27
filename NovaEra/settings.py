@@ -58,7 +58,8 @@ INSTALLED_APPS = [
     'storages',
     #Para implementar o rich text no cuadro do text field dos artículos
     #https://www.geeksforgeeks.org/richtextfield-django-models/
-    #'ckeditor',
+    'ckeditor',
+    'entradas'
 ]
 
 MIDDLEWARE = [

@@ -16,7 +16,7 @@ from django.db.models.signals import pre_save
 from django.core.exceptions import ValidationError
 import re
 #PAra o rich text do text field dos artigos no django/admin
-#from ckeditor.fields import RichTextField
+from ckeditor.fields import RichTextField
 
 #Estas 2 funcions son para cambiarlle o nome e que aparezca guay no model do admin con outro nome
 
@@ -54,8 +54,8 @@ class artigos(models.Model):
     artigos_title = models.CharField(max_length=120)
     slug = models.SlugField(blank=True, unique=True, verbose_name="Deixar_en_blanco")
     artigos_summary = models.TextField()
-    artigos_content = models.TextField()
-    #artigos_content = RichTextField()
+    #artigos_content = models.TextField()
+    artigos_content = RichTextField()
     author = models.ForeignKey(autores, related_name="artigos", on_delete=models.CASCADE, default=1)
     artigos_date = models.DateTimeField (default=datetime.now, blank=True)
 
@@ -86,9 +86,9 @@ class artigo_comments(models.Model):
     #artigo_key: é a foreign key que conecta o comentario co blog (artigo)
     artigo_key=models.ForeignKey(artigos, related_name="comments", on_delete=models.CASCADE)
     #A persona que escribe o comentario
-    name = models.CharField(blank=False, max_length=255)
-    email = models.EmailField(blank=False, max_length=255, validators=[email_validation])
-    body_comments = models.TextField(blank=False)
+    nome = models.CharField(blank=False, max_length=255)
+    correo_electrónico = models.EmailField(blank=False, max_length=255, validators=[email_validation])
+    comentario = models.TextField(blank=False)
     date_added = models.DateTimeField (default=datetime.now, blank=True)
 
     #Esto é para que me ordene os comentarios na páxina por data
@@ -108,9 +108,6 @@ pre_save.connect(artigos_pre_save_receiver, sender=artigos)
 
 
 
-class newsletter_email_contratacion(models.Model):
-    email_subscriber = models.EmailField(blank=False, default=False, max_length=255, validators=[email_validation])
-    def __str__(self):
-        return (self.email_subscriber)  
+
 
 
