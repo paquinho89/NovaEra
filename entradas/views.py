@@ -1,3 +1,4 @@
+from difflib import restore
 from django.shortcuts import render, redirect
 
 from entradas.forms import entradas_reserva_form
@@ -65,9 +66,31 @@ def entradas_view(request, *args, **kwargs):
         entradas_reserva[field].field.widget.attrs.update({'style': 'border-color:red; border-width: medium'})
       
       messages.error(request, entradas_reserva.errors)
-        
-  context = {
-        'form_entradas_reserva':entradas_reserva,
-  }
 
+#A SEGUINTE SECCIÓN SERÁ PARA CONTABILIZAR AS ENTRADAS RESERVADAS E AS QUE FALTAN POR RESERVAR
+
+  #Definimos o número de entradas que están reservadas
+  entradas_reservadas = len(entradas_modelo.objects.values_list('numero_entradas'))
+  print (entradas_modelo.objects.values_list('numero_entradas') )
+
+  #Esto é para traer todos o número de entradas que están reservardas
+  numeroentradas_data = entradas_modelo.objects.values_list('numero_entradas')
+  lista_numeroentradas=[]
+  for entrada in numeroentradas_data:
+    #Como me trae os correos con paréntesis e comillas, pois o que fago e eliminalos cas regular expressions
+    result=re.search("[^(,']+", str(entrada))
+    numero_entrada = int(result.group(0))
+    lista_numeroentradas.append(numero_entrada)
+  
+  #Definimos número de entradas reservadas
+  entradas_reservadas = sum(lista_numeroentradas)
+  # Definimos o número de entradas dispoñibles ######EIQUI É ONDE TES QUE MODIFICAR O NÚMERO DE ENTRADAS DISPOÑIBLES QUE HAI NO AUDITORIO ##########
+  entradas_disponhibles=200 - entradas_reservadas
+
+  context = {
+    'form_entradas_reserva':entradas_reserva,
+    'entradas_reservadas_view': entradas_reservadas,
+    'entradas_disponhibles_view': entradas_disponhibles
+  }
+  
   return render (request, 'entradas.html', context)

@@ -2,15 +2,10 @@ from logging.config import IDENTIFIER
 from django.db import models
 from datetime import datetime
 from django.core.exceptions import ValidationError
+from django.forms import ModelForm, CharField, TextInput
 
 # Create your models here.
-numero_entradas = (
-    ('0','0'),
-    ('1','1'),
-    ('2', '2'),
-    ('3', '3')
-)
-
+entradas_choices = [(i,i) for i in range(1,4)]
 
 # Create your models here.
 class entradas_modelo(models.Model):
@@ -20,8 +15,7 @@ class entradas_modelo(models.Model):
     #O unique do correo electrónico é para que unha mesma persona non poda facer 2 reservas, e se a intenta facer sale o erro que se describe a continuación.
     #correo_electrónico_entradas = models.EmailField(primary_key=True, blank=False, max_length=255, error_messages={'unique':"Este correo xa se usuo para facer a reserva"})
     correo_electrónico_entradas = models.EmailField(max_length=255)
-    correo_electrónico_entradas_repetido = models.EmailField(blank=False, max_length=255, default="correo_repetido")
-    numero_entradas = models.CharField(max_length=11, choices=numero_entradas)
+    numero_entradas = models.IntegerField(blank=False, null=False, choices=entradas_choices)
     data_rexistro = models.DateTimeField (default=datetime.now, blank=True)
 
 
