@@ -11,3 +11,7 @@ na línea de comandos da terminal escribimos o seguinte:
 python manage.py shell
 #Temos o model artigos. Pois entón facemos:
 from artigos.models import artigos
+
+¿Cómo crear o archivo de requirements.txt necesario para facer o deploy en Heroku?
+
+pip freeze > requirements.txt

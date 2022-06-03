@@ -176,7 +176,7 @@ STATIC_URL = '/static/'
 #STATIC_URL = "/static/"
 #django_heroku.settings(locals())
 
-# Esto é para indicar a ruta onde temos as imaxes. Con esto posibilitamos que as imaxes se carguen.
+# Esto é para indicar a ruta onde temos as imaxes, pdf... Esto é válido tanto en local coma en Heroku
 STATICFILES_DIRS=[
     BASE_DIR / "NovaEra/static/"
 ]
@@ -231,6 +231,9 @@ AWS_DEFAULT_ACL = None
 # git commit -m "nome-do-commit"
 # heroku git:remote -a novaera
 # git push heroku main
+
+#Para crear o requirements.txt file necesario para facer o deploy en Heroku:
+#pip freeze > requirements.txt
 
 #Cando fas un cambio no modelo e tes que replicalo na base de datos de Heroku
 
