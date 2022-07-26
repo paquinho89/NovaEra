@@ -182,8 +182,8 @@ STATICFILES_DIRS=[
 ]
 
 #ESto é para que as imaxes que a xente sube ao crear un blog se garden na seguinte ruta
-#MEDIA_URL='/media/'
-#MEDIA_ROOT = os.path.join(BASE_DIR, "artigos/static_cdn/media_root")
+MEDIA_URL='/mediafiles/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "NovaEra/mediafiles")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
