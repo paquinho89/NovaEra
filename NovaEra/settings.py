@@ -96,6 +96,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'NovaEra.wsgi.application'
+############Comproba se furruncha####################
+#Esto é para que non me de error a hora de completar os formularios
+CSRF_TRUSTED_ORIGINS = ['https://novaera.gal']
 
 #-------------------start---------database local configuration---------------------
 # Database
